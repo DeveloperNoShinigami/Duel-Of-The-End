@@ -2,7 +2,6 @@ package com.p1nero.dote.util;
 
 import com.google.common.collect.ImmutableList;
 import com.p1nero.dote.DOTEConfig;
-import com.p1nero.dote.item.DOTEItems;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
@@ -11,8 +10,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.List;
 
