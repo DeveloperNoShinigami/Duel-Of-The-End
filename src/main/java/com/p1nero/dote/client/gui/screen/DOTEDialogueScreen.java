@@ -4,6 +4,7 @@ import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.DOTEConfig;
 import com.p1nero.dote.client.gui.screen.component.DialogueAnswerComponent;
 import com.p1nero.dote.client.gui.screen.component.DialogueChoiceComponent;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.DOTEPacketHandler;
 import com.p1nero.dote.network.packet.serverbound.AddDialogPacket;
@@ -103,7 +104,7 @@ public class DOTEDialogueScreen extends Screen {
     }
 
     /**
-     * Sends an NPC interaction to the server, which is sent through a packet to be handled in {@link com.p1nero.dote.entity.NpcDialogue#handleNpcInteraction(Player, byte)}.
+     * Sends an NPC interaction to the server, which is sent through a packet to be handled in {@link NpcDialogue#handleNpcInteraction(Player, byte)}.
      * @param interactionID A code for which interaction was performed on the client.<br>
      *                      0 - "What can you tell me about this place?"<br>
      *                      1 - "I wish to fight you!"<br>

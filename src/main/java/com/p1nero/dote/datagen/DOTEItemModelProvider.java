@@ -27,56 +27,15 @@ public class DOTEItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(DOTEItems.M_KEY);
-        simpleItem(DOTEItems.P_KEY);
-        simpleItem(DOTEItems.U_KEY);
-        simpleItem(DOTEItems.ADGRAIN);
-        simpleItem(DOTEItems.ADVENTURESPAR);
         simpleItem(DOTEItems.IMMORTALESSENCE);
-        simpleItem(DOTEItems.STAR_CORE);
-        simpleItem(DOTEItems.TIESTONEH);
-        simpleItem(DOTEItems.TIESTONEC);
-        simpleItem(DOTEItems.TIESTONEL);
-        simpleItem(DOTEItems.TIESTONES);
-        trimmedArmorItem(DOTEItems.TIESTONEH);
-        trimmedArmorItem(DOTEItems.TIESTONEC);
-        trimmedArmorItem(DOTEItems.TIESTONEL);
-        trimmedArmorItem(DOTEItems.TIESTONES);
-        simpleItem(DOTEItems.HOLY_RADIANCE_SEED);
-        simpleItem(DOTEItems.WKNIGHT_INGOT);
-        simpleItem(DOTEItems.WKNIGHT_HELMET);
-        simpleItem(DOTEItems.WKNIGHT_CHESTPLATE);
-        simpleItem(DOTEItems.WKNIGHT_LEGGINGS);
-        simpleItem(DOTEItems.WKNIGHT_BOOTS);
-        trimmedArmorItem(DOTEItems.WKNIGHT_HELMET);
-        trimmedArmorItem(DOTEItems.WKNIGHT_CHESTPLATE);
-        trimmedArmorItem(DOTEItems.WKNIGHT_LEGGINGS);
-        trimmedArmorItem(DOTEItems.WKNIGHT_BOOTS);
-        simpleItem(DOTEItems.CORE_OF_HELL);
-        simpleItem(DOTEItems.NETHERROT_INGOT);
-        simpleItem(DOTEItems.NETHERITESS);
-        simpleItem(DOTEItems.WITHERC);
-        simpleItem(DOTEItems.NETHERITEROT_BOOTS);
-        simpleItem(DOTEItems.NETHERITEROT_CHESTPLATE);
-        simpleItem(DOTEItems.NETHERITEROT_HELMET);
-        simpleItem(DOTEItems.NETHERITEROT_LEGGINGS);
-        trimmedArmorItem(DOTEItems.NETHERITEROT_BOOTS);
-        trimmedArmorItem(DOTEItems.NETHERITEROT_CHESTPLATE);
-        trimmedArmorItem(DOTEItems.NETHERITEROT_HELMET);
-        trimmedArmorItem(DOTEItems.NETHERITEROT_LEGGINGS);
-        simpleItem(DOTEItems.BOOK_OF_ENDING);
-        simpleItem(DOTEItems.DRAGONSTEEL_INGOT);
+
         simpleItem(DOTEItems.GOLDEN_DRAGON_HELMET);
         simpleItem(DOTEItems.GOLDEN_DRAGON_CHESTPLATE);
         simpleItem(DOTEItems.GOLDEN_DRAGON_LEGGINGS);
         simpleItem(DOTEItems.GOLDEN_DRAGON_BOOTS);
-
-        eggItem(DOTEItems.DOTE_ZOMBIE_SPAWN_EGG);
-        eggItem(DOTEItems.DOTE_ZOMBIE2_SPAWN_EGG);
-        eggItem(DOTEItems.DOTE_PIGLIN_SPAWN_EGG);
     }
 
-    //Thank you kaupenjoe & El_Redstoniano!
+    // Thank you kaupenjoe & El_Redstoniano!
     // Shoutout to El_Redstoniano for making this
     private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
     static {

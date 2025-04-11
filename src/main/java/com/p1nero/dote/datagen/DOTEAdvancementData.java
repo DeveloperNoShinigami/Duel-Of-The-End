@@ -46,21 +46,21 @@ public class DOTEAdvancementData extends ForgeAdvancementProvider {
                     .addCriterion(DuelOfTheEndMod.MOD_ID, ChangeDimensionTrigger.TriggerInstance.changedDimensionTo(DOTEDimension.P_SKY_ISLAND_LEVEL_KEY))
                     .save(consumer, new ResourceLocation(DuelOfTheEndMod.MOD_ID, DuelOfTheEndMod.MOD_ID), existingFileHelper);
 
-            //打boss的成就
-            Advancement seed = registerAdvancement(root, "seed", FrameType.TASK, DOTEItems.HOLY_RADIANCE_SEED.get());
-            Advancement core = registerAdvancement(seed, "core", FrameType.TASK, DOTEItems.CORE_OF_HELL.get());
-            Advancement goldenFlame = registerAdvancement(seed, "golden_flame", FrameType.TASK, DOTEItems.WITHERC.get());
-            Advancement end = registerAdvancement(goldenFlame, "book", FrameType.TASK, DOTEItems.BOOK_OF_ENDING.get());
-
-            //骑士线
-            Advancement knight = registerAdvancement(core, "knight", FrameType.TASK, DOTEItems.ROT_GREATSWORD.get());
-            Advancement loyal = registerAdvancement(knight, "loyal", FrameType.TASK, DOTEItems.WKNIGHT_CHESTPLATE.get());
-
-            //一般结局
-            Advancement unfinished = registerAdvancement(knight, "unfinished", FrameType.TASK, DOTEItems.ADGRAIN.get());
-
-            //终焉线
-            Advancement star = registerAdvancement(end, "star", FrameType.TASK, Items.NETHER_STAR);
+//            //打boss的成就
+//            Advancement seed = registerAdvancement(root, "seed", FrameType.TASK, DOTEItems.HOLY_RADIANCE_SEED.get());
+//            Advancement core = registerAdvancement(seed, "core", FrameType.TASK, DOTEItems.CORE_OF_HELL.get());
+//            Advancement goldenFlame = registerAdvancement(seed, "golden_flame", FrameType.TASK, DOTEItems.WITHERC.get());
+//            Advancement end = registerAdvancement(goldenFlame, "book", FrameType.TASK, DOTEItems.BOOK_OF_ENDING.get());
+//
+//            //骑士线
+//            Advancement knight = registerAdvancement(core, "knight", FrameType.TASK, DOTEItems.ROT_GREATSWORD.get());
+//            Advancement loyal = registerAdvancement(knight, "loyal", FrameType.TASK, DOTEItems.WKNIGHT_CHESTPLATE.get());
+//
+//            //一般结局
+//            Advancement unfinished = registerAdvancement(knight, "unfinished", FrameType.TASK, DOTEItems.ADGRAIN.get());
+//
+//            //终焉线
+//            Advancement star = registerAdvancement(end, "star", FrameType.TASK, Items.NETHER_STAR);
 
         }
 

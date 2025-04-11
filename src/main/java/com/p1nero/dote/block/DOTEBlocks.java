@@ -19,29 +19,28 @@ public class DOTEBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, DuelOfTheEndMod.MOD_ID);
 
     public static final RegistryObject<Block> BETTER_STRUCTURE_BLOCK = registerBlock("better_structure_block",
-            ()-> new BetterStructureBlock(BlockBehaviour.Properties.copy(Blocks.STRUCTURE_BLOCK).noOcclusion()));
+            () -> new BetterStructureBlock(BlockBehaviour.Properties.copy(Blocks.STRUCTURE_BLOCK).noOcclusion()));
 
+    public static final RegistryObject<Block> M_BLOCK = registerBlock("m_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion().noLootTable()));
+    public static final RegistryObject<Block> P_BLOCK = registerBlock("p_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion().noLootTable()));
+    public static final RegistryObject<Block> U_BLOCK = registerBlock("u_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion().noLootTable()));
     public static final RegistryObject<Block> SENBAI_SPAWNER = registerBlock("senbai_spawner",
-            ()-> new SenbaiSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
+            () -> new SenbaiSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
 
     public static final RegistryObject<Block> GOLDEN_FLAME_SPAWNER = registerBlock("golden_flame_spawner",
-            ()-> new GoldenFlameSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
+            () -> new GoldenFlameSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
 
-    public static final RegistryObject<Block> TAR_SPAWNER = registerBlock("tar_spawner",
-            ()-> new TARSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
-    public static final RegistryObject<Block> TPP_SPAWNER = registerBlock("tpp_spawner",
-            ()-> new TPPSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
-    public static final RegistryObject<Block> TSE_SPAWNER = registerBlock("tse_spawner",
-            ()-> new TSESpawnerBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK).noOcclusion()));
-
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = REGISTRY.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block){
-        return DOTEItems.REGISTRY.register(name, ()->new BlockItem(block.get(),new Item.Properties()));
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
+        return DOTEItems.REGISTRY.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
 }

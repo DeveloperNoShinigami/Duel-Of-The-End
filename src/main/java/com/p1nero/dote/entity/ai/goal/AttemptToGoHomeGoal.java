@@ -1,6 +1,6 @@
 package com.p1nero.dote.entity.ai.goal;
 
-import com.p1nero.dote.entity.HomePointEntity;
+import com.p1nero.dote.entity.api.HomePointEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;

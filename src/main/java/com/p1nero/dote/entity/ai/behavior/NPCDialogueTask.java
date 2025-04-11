@@ -1,6 +1,6 @@
 package com.p1nero.dote.entity.ai.behavior;
 
-import com.p1nero.dote.entity.NpcDialogue;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;

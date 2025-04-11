@@ -26,19 +26,5 @@ public class DOTEBlockEntities {
             REGISTRY.register("golden_flame_spawner_block_entity", () ->
                     BlockEntityType.Builder.of(GoldenFlameSpawnerBlockEntity::new,
                             DOTEBlocks.GOLDEN_FLAME_SPAWNER.get()).build(null));
-    public static final RegistryObject<BlockEntityType<TARSpawnerBlockEntity>> TAR_SPAWNER_BLOCK_ENTITY =
-            REGISTRY.register("tar_spawner_block_entity", () ->
-                    BlockEntityType.Builder.of(TARSpawnerBlockEntity::new,
-                            DOTEBlocks.TAR_SPAWNER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<TPPSpawnerBlockEntity>> TPP_SPAWNER_BLOCK_ENTITY =
-            REGISTRY.register("tpp_spawner_block_entity", () ->
-                    BlockEntityType.Builder.of(TPPSpawnerBlockEntity::new,
-                            DOTEBlocks.TPP_SPAWNER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<TSESpawnerBlockEntity>> TSE_SPAWNER_BLOCK_ENTITY =
-            REGISTRY.register("tse_spawner_block_entity", () ->
-                    BlockEntityType.Builder.of(TSESpawnerBlockEntity::new,
-                            DOTEBlocks.TSE_SPAWNER.get()).build(null));
 
 }

@@ -1,6 +1,6 @@
 package com.p1nero.dote.entity.ai.goal;
 
-import com.p1nero.dote.entity.IWanderableEntity;
+import com.p1nero.dote.entity.api.IWanderableEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;

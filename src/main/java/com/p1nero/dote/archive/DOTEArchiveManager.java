@@ -3,14 +3,12 @@ package com.p1nero.dote.archive;
 import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.capability.DOTECapabilityProvider;
 import com.p1nero.dote.datagen.DOTEAdvancementData;
-import com.p1nero.dote.entity.LevelableEntity;
-import com.p1nero.dote.item.DOTEItems;
+import com.p1nero.dote.entity.api.LevelableEntity;
 import com.p1nero.dote.network.DOTEPacketHandler;
 import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.packet.SyncArchivePacket;
 import com.p1nero.dote.network.packet.clientbound.BroadcastMessagePacket;
 import com.p1nero.dote.network.packet.clientbound.OpenEndScreenPacket;
-import com.p1nero.dote.util.ItemUtil;
 import com.p1nero.dote.worldgen.dimension.DOTEDimension;
 import com.p1nero.dote.worldgen.portal.DOTETeleporter;
 import net.minecraft.nbt.CompoundTag;
@@ -206,7 +204,6 @@ public class DOTEArchiveManager {
                 } else if(BIOME_PROGRESS_DATA.isEnd3()){
                     DOTEAdvancementData.getAdvancement("star", player);
                     PacketRelay.sendToPlayer(DOTEPacketHandler.INSTANCE, new OpenEndScreenPacket(), player);//播终末之诗
-                    ItemUtil.addItem(player, DOTEItems.BALMUNG.get().getDefaultInstance());
                 } else {
                     DOTEAdvancementData.getAdvancement("unfinished", player);
                 }

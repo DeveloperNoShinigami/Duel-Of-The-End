@@ -1,18 +1,17 @@
 package com.p1nero.dote.worldgen.dimension;
 
-import com.p1nero.dote.DOTEConfig;
-import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.worldgen.biome.DOTEBiomeProvider;
-import com.p1nero.dote.worldgen.structure.PositionPlacement;
-import com.p1nero.dote.worldgen.structure.DOTEStructurePoses;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.p1nero.dote.DOTEConfig;
+import com.p1nero.dote.DuelOfTheEndMod;
+import com.p1nero.dote.worldgen.biome.DOTEBiomeProvider;
+import com.p1nero.dote.worldgen.structure.DOTEStructurePoses;
+import com.p1nero.dote.worldgen.structure.PositionPlacement;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.core.*;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.biome.Biome;
@@ -29,8 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
@@ -42,13 +41,6 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
 
     public DOTEChunkGenerator(ChunkGenerator delegate, Holder<NoiseGeneratorSettings> noiseGeneratorSettingsHolder) {
         super(delegate, noiseGeneratorSettingsHolder);
-    }
-
-    //TODO 生成自己的地表
-    @Override
-    public void buildSurface(@NotNull WorldGenRegion pLevel, @NotNull StructureManager pStructureManager, @NotNull RandomState pRandom, @NotNull ChunkAccess pChunk) {
-        super.buildSurface(pLevel, pStructureManager, pRandom, pChunk);
-
     }
 
     @Override

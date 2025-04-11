@@ -26,8 +26,8 @@ public class WorldListEntryMixin {
      */
     @Inject(method = "doDeleteWorld()V", at = @At("RETURN"))
     private void injectedDoDeleteWorld(CallbackInfo ci){
-        DOTEBiomeProvider.LOGGER.info("Deleting : " + summary.getLevelId() + ".dat -> "+ (DOTEBiomeProvider.deleteCache(summary.getLevelId())?"SUCCESS":"FAILED"));
-        DOTEBiomeProvider.LOGGER.info("Deleting : " + summary.getLevelId() + ".nbt -> "+ (DOTEArchiveManager.deleteCache(summary.getLevelId())?"SUCCESS":"FAILED"));
+//        DOTEBiomeProvider.LOGGER.info("Deleting : " + summary.getLevelId() + ".dat -> "+ (DOTEBiomeProvider.deleteCache(summary.getLevelId())?"SUCCESS":"FAILED"));
+//        DOTEBiomeProvider.LOGGER.info("Deleting : " + summary.getLevelId() + ".nbt -> "+ (DOTEArchiveManager.deleteCache(summary.getLevelId())?"SUCCESS":"FAILED"));
     }
 
     /**
@@ -36,9 +36,9 @@ public class WorldListEntryMixin {
     @Inject(method = "queueLoadScreen()V", at = @At("RETURN"))
     private void injectedQueueLoadScreen(CallbackInfo ci){
         if(FMLEnvironment.dist.isClient()){
-            DOTEBiomeProvider.LOGGER.info("On loadWorld Sync : " + summary.getLevelId() + " >> TCRBiomeProvider.worldName");
+            DOTEBiomeProvider.LOGGER.info("On loadWorld Sync : " + summary.getLevelId() + " >> DOTEBiomeProvider.worldName");
             DOTEBiomeProvider.LOGGER.info("Try to update biome map by new worldName");
-            DOTEBiomeProvider.updateBiomeMap(summary.getLevelId());
+//            DOTEBiomeProvider.updateBiomeMap(summary.getLevelId());
             //纯客户端读取
             DOTEArchiveManager.read(summary.getLevelId());
         }

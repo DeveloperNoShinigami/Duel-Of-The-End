@@ -27,12 +27,8 @@ import java.util.stream.Stream;
  */
 public class DOTEBiomeProvider extends BiomeSource {
 
-    public static final Codec<DOTEBiomeProvider> TCR_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            RegistryOps.retrieveElement(DOTEBiomes.AIR),
-            RegistryOps.retrieveElement(DOTEBiomes.M_BIOME),
-            RegistryOps.retrieveElement(DOTEBiomes.P_BIOME),
-            RegistryOps.retrieveElement(DOTEBiomes.M_WATER),
-            RegistryOps.retrieveElement(DOTEBiomes.P_LAVA)
+    public static final Codec<DOTEBiomeProvider> DOTE_BIOME_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            RegistryOps.retrieveElement(DOTEBiomes.AIR)
     ).apply(instance, instance.stable(DOTEBiomeProvider::new)));
 
     public static final Logger LOGGER = LogUtils.getLogger();
@@ -46,36 +42,18 @@ public class DOTEBiomeProvider extends BiomeSource {
     private static File mapFile;
 
     private final Holder<Biome> biomeHolder0;
-    private final Holder<Biome> biomeHolder1;
-    private final Holder<Biome> biomeHolder2;
-    private final Holder<Biome> biomeHolder3;
-    private final Holder<Biome> biomeHolder4;
 
     private final List<Holder<Biome>> biomeList;
 
     public static DOTEBiomeProvider create(HolderGetter<Biome> pBiomeGetter) {
 
-        return new DOTEBiomeProvider(
-                pBiomeGetter.getOrThrow(DOTEBiomes.AIR),
-                pBiomeGetter.getOrThrow(DOTEBiomes.M_BIOME),
-                pBiomeGetter.getOrThrow(DOTEBiomes.P_BIOME),
-                pBiomeGetter.getOrThrow(DOTEBiomes.M_WATER),
-                pBiomeGetter.getOrThrow(DOTEBiomes.P_LAVA)
-                );
+        return new DOTEBiomeProvider(pBiomeGetter.getOrThrow(DOTEBiomes.AIR));
     }
 
-    public DOTEBiomeProvider(Holder<Biome> biomeHolder0, Holder<Biome> biomeHolder1, Holder<Biome> biomeHolder2, Holder<Biome> biomeHolder3, Holder<Biome> biomeHolder4) {
+    public DOTEBiomeProvider(Holder<Biome> biomeHolder0) {
         this.biomeHolder0 = biomeHolder0;
-        this.biomeHolder1 = biomeHolder1;
-        this.biomeHolder2 = biomeHolder2;
-        this.biomeHolder3 = biomeHolder3;
-        this.biomeHolder4 = biomeHolder4;
         biomeList = new ArrayList<>();
         biomeList.add(biomeHolder0);
-        biomeList.add(biomeHolder1);
-        biomeList.add(biomeHolder2);
-        biomeList.add(biomeHolder3);
-        biomeList.add(biomeHolder4);
     }
 
     /**
@@ -84,11 +62,11 @@ public class DOTEBiomeProvider extends BiomeSource {
      */
     @Override
     protected @NotNull Stream<Holder<Biome>> collectPossibleBiomes() {
-        if(BiomeMap.getInstance() == null){
-            updateBiomeMap(worldName);
-        }
+//        if(BiomeMap.getInstance() == null){
+//            updateBiomeMap(worldName);
+//        }
 
-        return Stream.of(biomeHolder0, biomeHolder1, biomeHolder2, biomeHolder3, biomeHolder4);
+        return Stream.of(biomeHolder0);
     }
 
     /**
@@ -96,19 +74,19 @@ public class DOTEBiomeProvider extends BiomeSource {
      * @param mapFile
      */
     private static void createBiomeMap(File mapFile){
-        try {
-            BiomeMap.init();
-            mapFile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(mapFile);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(mapName);
-            oos.writeObject(BiomeMap.getInstance());
-            oos.close();
-            fos.close();
-        } catch (IOException e) {
-            LOGGER.error("Failed to save map", e);
-            mapName = "SAVE_ERROR!!";
-        }
+//        try {
+//            BiomeMap.init();
+//            mapFile.createNewFile();
+//            FileOutputStream fos = new FileOutputStream(mapFile);
+//            ObjectOutputStream oos = new ObjectOutputStream(fos);
+//            oos.writeObject(mapName);
+//            oos.writeObject(BiomeMap.getInstance());
+//            oos.close();
+//            fos.close();
+//        } catch (IOException e) {
+//            LOGGER.error("Failed to save map", e);
+//            mapName = "SAVE_ERROR!!";
+//        }
 
     }
 
@@ -118,28 +96,28 @@ public class DOTEBiomeProvider extends BiomeSource {
      * @param levelID 世界的id，可以理解为存档名。
      */
     public static void updateBiomeMap(String levelID){
-        if(!DIR.exists()){
-            LOGGER.info("try mkdir : " + DIR.mkdir());
-        }
-        worldName = levelID;
-        mapFile = getLevelFile();
-        //二次进入游戏从文件直接读取数组较快，否则每次进世界都得加载，地图大的话很慢
-        if(mapFile.exists()){
-            try {
-                LOGGER.info("Loading existing map data form : " + mapFile.getAbsolutePath());
-                FileInputStream fis = new FileInputStream(mapFile);
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                mapName = (String) ois.readObject();
-                BiomeMap.load((BiomeMap) ois.readObject());
-                ois.close();
-                fis.close();
-            } catch (Exception e) {
-                createBiomeMap(mapFile);
-            }
-
-        }else {
-            createBiomeMap(mapFile);
-        }
+//        if(!DIR.exists()){
+//            LOGGER.info("try mkdir : " + DIR.mkdir());
+//        }
+//        worldName = levelID;
+//        mapFile = getLevelFile();
+//        //二次进入游戏从文件直接读取数组较快，否则每次进世界都得加载，地图大的话很慢
+//        if(mapFile.exists()){
+//            try {
+//                LOGGER.info("Loading existing map data form : " + mapFile.getAbsolutePath());
+//                FileInputStream fis = new FileInputStream(mapFile);
+//                ObjectInputStream ois = new ObjectInputStream(fis);
+//                mapName = (String) ois.readObject();
+//                BiomeMap.load((BiomeMap) ois.readObject());
+//                ois.close();
+//                fis.close();
+//            } catch (Exception e) {
+//                createBiomeMap(mapFile);
+//            }
+//
+//        }else {
+//            createBiomeMap(mapFile);
+//        }
     }
 
     public static boolean deleteCache(String levelName){
@@ -157,7 +135,7 @@ public class DOTEBiomeProvider extends BiomeSource {
 
     @Override
     protected @NotNull Codec<? extends BiomeSource> codec() {
-        return TCR_CODEC;
+        return DOTE_BIOME_CODEC;
     }
 
     /**
@@ -169,13 +147,13 @@ public class DOTEBiomeProvider extends BiomeSource {
      */
     @Override
     public @NotNull Holder<Biome> getNoiseBiome(int x, int y, int z, Climate.@NotNull Sampler sampler) {
-        x = getCorrectValue(x);
-        z = getCorrectValue(z);
-        if(0 <= x && x < BiomeMap.getInstance().getMapLength() && 0 <= z && z < BiomeMap.getInstance().getMapWidth()){
-            int index = (int)BiomeMap.getInstance().getMap()[x][z];
-            if(index < biomeList.size())
-                return biomeList.get((int)BiomeMap.getInstance().getMap()[x][z]);
-        }
+//        x = getCorrectValue(x);
+//        z = getCorrectValue(z);
+//        if(0 <= x && x < BiomeMap.getInstance().getMapLength() && 0 <= z && z < BiomeMap.getInstance().getMapWidth()){
+//            int index = (int)BiomeMap.getInstance().getMap()[x][z];
+//            if(index < biomeList.size())
+//                return biomeList.get((int)BiomeMap.getInstance().getMap()[x][z]);
+//        }
         return biomeHolder0;
     }
 

@@ -7,7 +7,7 @@ import com.p1nero.dote.client.DOTESounds;
 import com.p1nero.dote.effect.DOTEEffects;
 import com.p1nero.dote.entity.DOTEEntities;
 import com.p1nero.dote.entity.DOTEVillagers;
-import com.p1nero.dote.entity.ai.condition.DOTEConditions;
+import com.p1nero.dote.condition.DOTEConditions;
 import com.p1nero.dote.gameasset.DOTELivingMotions;
 import com.p1nero.dote.item.DOTEItemTabs;
 import com.p1nero.dote.item.DOTEItems;
@@ -91,7 +91,7 @@ public class DuelOfTheEndMod {
 
     public void registerExtraStuff(RegisterEvent evt) {
         if (evt.getRegistryKey().equals(Registries.BIOME_SOURCE)) {
-            Registry.register(BuiltInRegistries.BIOME_SOURCE, DuelOfTheEndMod.prefix("dote_biomes"), DOTEBiomeProvider.TCR_CODEC);
+            Registry.register(BuiltInRegistries.BIOME_SOURCE, DuelOfTheEndMod.prefix("dote_biomes"), DOTEBiomeProvider.DOTE_BIOME_CODEC);
 
         }else if (evt.getRegistryKey().equals(Registries.CHUNK_GENERATOR)) {
             Registry.register(BuiltInRegistries.CHUNK_GENERATOR, DuelOfTheEndMod.prefix("structure_locating_wrapper"), DOTEChunkGenerator.CODEC);

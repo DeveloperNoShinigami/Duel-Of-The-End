@@ -16,7 +16,6 @@ public class DOTENoises {
         return ResourceKey.create(Registries.NOISE, new ResourceLocation(DuelOfTheEndMod.MOD_ID, name));
     }
 
-
     public static void bootstrap(BootstapContext<NoiseParameters> context) {
         register(context, TEMPERATURE, -8, 1.5, 0.0, 1.0, 0.0, 0.0, 0.0);
         register(context, VEGETATION, -7, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0);

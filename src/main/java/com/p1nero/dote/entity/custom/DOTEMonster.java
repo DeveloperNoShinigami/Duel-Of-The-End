@@ -1,6 +1,6 @@
 package com.p1nero.dote.entity.custom;
 
-import com.p1nero.dote.entity.LevelableEntity;
+import com.p1nero.dote.entity.api.LevelableEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -69,7 +69,6 @@ public abstract class DOTEMonster extends PathfinderMob implements LevelableEnti
         super.registerGoals();
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, StarChaser.class, false));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, 1));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));

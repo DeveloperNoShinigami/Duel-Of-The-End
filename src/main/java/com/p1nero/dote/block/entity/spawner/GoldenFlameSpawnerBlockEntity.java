@@ -2,7 +2,7 @@ package com.p1nero.dote.block.entity.spawner;
 
 import com.p1nero.dote.block.DOTEBlockEntities;
 import com.p1nero.dote.entity.DOTEEntities;
-import com.p1nero.dote.entity.custom.GoldenFlame;
+import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlame;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;

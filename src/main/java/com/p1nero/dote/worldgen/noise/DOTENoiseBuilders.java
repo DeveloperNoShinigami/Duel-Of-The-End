@@ -13,16 +13,7 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import java.util.List;
 
 public class DOTENoiseBuilders {
-
-    private static final SurfaceRules.RuleSource GRASS_BLOCK = SurfaceRules.state(Blocks.GRASS_BLOCK.defaultBlockState());
-    private static final SurfaceRules.RuleSource DIRT = SurfaceRules.state(Blocks.DIRT.defaultBlockState());
     private static final SurfaceRules.RuleSource AIR = SurfaceRules.state(Blocks.AIR.defaultBlockState());
-    private static final SurfaceRules.RuleSource WATER = SurfaceRules.state(Blocks.WATER.defaultBlockState());
-    private static final SurfaceRules.RuleSource LAVA = SurfaceRules.state(Blocks.LAVA.defaultBlockState());
-    private static final SurfaceRules.RuleSource STONE = SurfaceRules.state(Blocks.STONE.defaultBlockState());
-    private static final SurfaceRules.RuleSource NETHERRACK = SurfaceRules.state(Blocks.NETHERRACK.defaultBlockState());
-    private static final SurfaceRules.RuleSource WARPED_NYLIUM = SurfaceRules.state(Blocks.WARPED_NYLIUM.defaultBlockState());
-    private static final SurfaceRules.RuleSource CRIMSON_NYLIUM = SurfaceRules.state(Blocks.CRIMSON_NYLIUM.defaultBlockState());
 
     public static NoiseGeneratorSettings plainNoiseSettings(HolderGetter<DensityFunction> densityFunctions, HolderGetter<NormalNoise.NoiseParameters> noise) {
         return new NoiseGeneratorSettings(
@@ -42,59 +33,10 @@ public class DOTENoiseBuilders {
 
     public static SurfaceRules.RuleSource pSurfaceRules() {
 
-        //边界
+        //朴实无华的虚空
         SurfaceRules.RuleSource air = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.AIR), AIR));
-        //瀑布
-        SurfaceRules.RuleSource water = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.M_WATER), WATER));
-        //岩浆
-        SurfaceRules.RuleSource lava = SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.P_LAVA), LAVA));
-        //炼狱群系
-        SurfaceRules.RuleSource pBiome = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.P_BIOME),
-                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.ifTrue(surfaceNoiseAbove(0.5), WARPED_NYLIUM))),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.P_BIOME),
-                        SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.ifTrue(SurfaceRules.not(surfaceNoiseAbove(0.5)), CRIMSON_NYLIUM))),
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(DOTEBiomes.P_BIOME), NETHERRACK));
-
-        //普通
-        SurfaceRules.RuleSource overworldLike = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                        SurfaceRules.sequence(
-                                //make everything else grass
-                                SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0),
-                                        SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(
-                                                        //check if we're above ground, so hollow hills dont have grassy floors
-                                                        SurfaceRules.yStartCheck(VerticalAnchor.absolute(-4), 1), GRASS_BLOCK))),
-
-                                //if we're around the area hollow hill floors are, check if we're underwater. If so place some dirt.
-                                //This fixes streams having weird stone patches
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.not(
-                                                SurfaceRules.yStartCheck(VerticalAnchor.absolute(-4), 1)),
-                                        SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(
-                                                        SurfaceRules.not(
-                                                                SurfaceRules.waterBlockCheck(-1, 0)), DIRT))))),
-                //dirt goes under the grass of course!
-                //check if we're above ground, so hollow hills dont have dirt floors
-                SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1),
-                        SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(
-                                        SurfaceRules.yStartCheck(VerticalAnchor.absolute(-6), 1),
-                                        SurfaceRules.sequence(
-                                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT))))));
-
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
-        builder
-                .add(air)
-                .add(water)
-                .add(lava)
-                .add(pBiome)
-                .add(overworldLike)
-                .add(SurfaceRules.ifTrue(SurfaceRules.verticalGradient("stone", VerticalAnchor.absolute(0), VerticalAnchor.absolute(8)), STONE));
-        ;
-
+        builder.add(air);
 
         return SurfaceRules.sequence(builder.build().toArray(SurfaceRules.RuleSource[]::new));
     }

@@ -1,8 +1,8 @@
 package com.p1nero.dote.block.entity.spawner;
 
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.entity.HomePointEntity;
-import com.p1nero.dote.entity.custom.DOTEBoss;
+import com.p1nero.dote.entity.api.HomePointEntity;
+import com.p1nero.dote.entity.custom.boss.DOTEBoss;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;

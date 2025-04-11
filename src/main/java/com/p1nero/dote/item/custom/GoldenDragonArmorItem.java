@@ -2,7 +2,7 @@ package com.p1nero.dote.item.custom;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.entity.custom.GoldenFlame;
+import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlame;
 import com.p1nero.dote.item.DOTEArmorMaterials;
 import com.p1nero.dote.item.DOTERarities;
 import com.p1nero.dote.item.model.GoldenDragonArmorModel;

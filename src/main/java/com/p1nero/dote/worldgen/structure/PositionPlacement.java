@@ -15,7 +15,6 @@ import java.util.Optional;
 
 /**
  * 从暮色得到灵感，在关键方法判断该区是否是指定的位置。
- * @author LZY
  */
 public class PositionPlacement extends StructurePlacement {
     public static final Codec<PositionPlacement> CODEC = RecordCodecBuilder.create(inst -> inst.group(

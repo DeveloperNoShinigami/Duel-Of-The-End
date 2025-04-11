@@ -12,11 +12,6 @@ import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.client.gui.screen.component.DOTELogoRenderer;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Iterator;
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.GameNarrator;
 import net.minecraft.client.gui.GuiGraphics;
@@ -34,9 +29,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-/**
- * 由于Mojang啥几把都private，一怒之下全抄过来了省的AT
- */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Iterator;
+import java.util.List;
+
 @OnlyIn(Dist.CLIENT)
 public class EndScreen extends Screen {
     private static final Logger LOGGER = LogUtils.getLogger();

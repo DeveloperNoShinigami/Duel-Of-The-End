@@ -1,10 +1,9 @@
 package com.p1nero.dote.entity.custom.npc;
 
 import com.p1nero.dote.archive.DOTEArchiveManager;
-import com.p1nero.dote.entity.HomePointEntity;
-import com.p1nero.dote.entity.NpcDialogue;
-import com.p1nero.dote.entity.ai.goal.AttemptToGoHomeGoal;
 import com.p1nero.dote.entity.ai.goal.NpcDialogueGoal;
+import com.p1nero.dote.entity.api.HomePointEntity;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import com.p1nero.dote.network.DOTEPacketHandler;
 import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.packet.clientbound.NPCDialoguePacket;

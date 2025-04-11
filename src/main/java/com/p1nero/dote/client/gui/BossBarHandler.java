@@ -2,9 +2,8 @@ package com.p1nero.dote.client.gui;
 
 import com.p1nero.dote.DOTEConfig;
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.entity.custom.DOTEBoss;
-import com.p1nero.dote.entity.custom.GoldenFlame;
-import com.p1nero.dote.entity.custom.SenbaiDevil;
+import com.p1nero.dote.entity.custom.boss.DOTEBoss;
+import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlame;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.LerpingBossEvent;
@@ -13,7 +12,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class BossBarHandler {
     public static final Map<UUID, Integer> BOSSES = new HashMap<>();//一个BossBar对应一个实体的id，在实体构建的时候发包来设置
@@ -32,9 +33,7 @@ public class BossBarHandler {
                 return false;
             }
         }
-        if(boss instanceof SenbaiDevil){
-            barLocation = new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/gui/bossbar/senbai_devil.png");
-        } else if(boss instanceof GoldenFlame){
+        if(boss instanceof GoldenFlame){
             barLocation = new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/gui/bossbar/golden_flame.png");
         } else {
             return false;

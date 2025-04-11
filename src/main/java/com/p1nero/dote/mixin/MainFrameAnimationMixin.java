@@ -1,6 +1,6 @@
 package com.p1nero.dote.mixin;
 
-import com.p1nero.dote.entity.ai.ef.api.*;
+import com.p1nero.dote.entity.ai.epicfight.api.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

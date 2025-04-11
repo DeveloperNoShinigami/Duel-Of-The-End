@@ -3,6 +3,7 @@ package com.p1nero.dote.client.gui.screen;
 import com.p1nero.dote.client.gui.DialogueComponentBuilder;
 import com.p1nero.dote.client.gui.TreeNode;
 import com.p1nero.dote.client.gui.screen.component.DialogueChoiceComponent;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -73,7 +74,7 @@ public class LinkListStreamDialogueScreenBuilder {
 
     /**
      * @param finalOption 最后显示的话
-     * @param returnValue 选项的返回值，默认返回0。用于处理 {@link com.p1nero.dote.entity.NpcDialogue#handleNpcInteraction(Player, byte)}
+     * @param returnValue 选项的返回值，默认返回0。用于处理 {@link NpcDialogue#handleNpcInteraction(Player, byte)}
      */
     public LinkListStreamDialogueScreenBuilder addFinalChoice(Component finalOption, byte returnValue){
         if(answerNode == null)
@@ -84,7 +85,7 @@ public class LinkListStreamDialogueScreenBuilder {
 
     /**
      * @param finalOption 最后显示的话
-     * @param returnValue 选项的返回值，默认返回0。用于处理 {@link com.p1nero.dote.entity.NpcDialogue#handleNpcInteraction(Player, byte)}
+     * @param returnValue 选项的返回值，默认返回0。用于处理 {@link NpcDialogue#handleNpcInteraction(Player, byte)}
      */
     public LinkListStreamDialogueScreenBuilder addFinalChoice(int finalOption, byte returnValue){
         return addFinalChoice(DialogueComponentBuilder.BUILDER.buildDialogueOption(entityType,finalOption), returnValue);

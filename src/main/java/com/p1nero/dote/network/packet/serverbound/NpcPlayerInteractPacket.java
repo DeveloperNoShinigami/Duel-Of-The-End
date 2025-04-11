@@ -1,6 +1,6 @@
 package com.p1nero.dote.network.packet.serverbound;
 
-import com.p1nero.dote.entity.NpcDialogue;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import com.p1nero.dote.network.packet.BasePacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;

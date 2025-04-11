@@ -1,5 +1,5 @@
 package com.p1nero.dote.network.packet.clientbound;
-import com.p1nero.dote.entity.NpcDialogue;
+import com.p1nero.dote.entity.api.NpcDialogue;
 import com.p1nero.dote.network.packet.BasePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
