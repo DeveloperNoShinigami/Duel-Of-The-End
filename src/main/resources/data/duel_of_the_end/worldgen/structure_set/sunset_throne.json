@@ -1,0 +1,12 @@
+{
+  "structures": [
+    {
+      "structure": "duel_of_the_end:sunset_throne",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "duel_of_the_end:specific_location",
+    "structure": "SUNSET_THRONE"
+  }
+}

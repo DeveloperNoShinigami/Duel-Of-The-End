@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod.EventBusSubscriber(modid = DuelOfTheEndMod.MOD_ID)
 public class LivingEntityListener {
@@ -38,6 +39,10 @@ public class LivingEntityListener {
         }
         //进维度换冒险
         if(event.getDimension() == DOTEDimension.P_SKY_ISLAND_LEVEL_KEY){
+            if(FMLEnvironment.production) {
+                //开发环境不受影响
+                return;
+            }
             if(event.getEntity() instanceof ServerPlayer serverPlayer){
                 serverPlayer.setGameMode(GameType.ADVENTURE);
             }

@@ -1,0 +1,12 @@
+{
+  "structures": [
+    {
+      "structure": "duel_of_the_end:uarena",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "duel_of_the_end:specific_location",
+    "structure": "END_ARENA"
+  }
+}

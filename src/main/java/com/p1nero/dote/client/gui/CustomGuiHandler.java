@@ -1,11 +1,10 @@
 package com.p1nero.dote.client.gui;
 
-import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.DOTEConfig;
-import com.p1nero.dote.archive.Task;
-import com.p1nero.dote.client.keymapping.KeyMappings;
-import com.p1nero.dote.archive.DOTEArchiveManager;
 import com.mojang.blaze3d.platform.Window;
+import com.p1nero.dote.DOTEConfig;
+import com.p1nero.dote.DuelOfTheEndMod;
+import com.p1nero.dote.archive.DOTEArchiveManager;
+import com.p1nero.dote.archive.Task;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -30,8 +29,8 @@ public class CustomGuiHandler {
             Component currentLevel = DuelOfTheEndMod.getInfo("current_level", DOTEArchiveManager.getWorldLevelName());
             guiGraphics.drawString(font, currentLevel, x, y += interval, 0x00ff00, true);
         }
-        Component currentTasks = DuelOfTheEndMod.getInfo("current_tasks", KeyMappings.OPEN_PROGRESS.getKeyName());
-        guiGraphics.drawString(font, currentTasks, x, y += interval, 0x00ff00, true);
+//        Component currentTasks = DuelOfTheEndMod.getInfo("current_tasks", KeyMappings.OPEN_PROGRESS.getKeyName());
+//        guiGraphics.drawString(font, currentTasks, x, y += interval, 0x00ff00, true);
         for(Task task : DOTEArchiveManager.TASK_SET){
 //            List<FormattedCharSequence> listName = Minecraft.getInstance().font.split(dialog.name(), Math.min(window.getGuiScaledWidth() - x, TCRConfig.TASK_SIZE.get().intValue()));
             guiGraphics.drawString(font, task.getName(), x, y += interval, 0xff0000, true);

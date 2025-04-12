@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.p1nero.dote.DOTEConfig;
-import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.worldgen.biome.DOTEBiomeProvider;
 import com.p1nero.dote.worldgen.structure.DOTEStructurePoses;
 import com.p1nero.dote.worldgen.structure.PositionPlacement;
@@ -27,8 +26,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
-import java.util.List;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -37,7 +34,7 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
     public static final Codec<DOTEChunkGenerator> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
             ChunkGenerator.CODEC.fieldOf("wrapped_generator").forGetter(o -> o.delegate),
             NoiseGeneratorSettings.CODEC.fieldOf("noise_generation_settings").forGetter(NoiseBasedChunkGenerator::generatorSettings)
-            ).apply(instance, DOTEChunkGenerator::new));
+    ).apply(instance, DOTEChunkGenerator::new));
 
     public DOTEChunkGenerator(ChunkGenerator delegate, Holder<NoiseGeneratorSettings> noiseGeneratorSettingsHolder) {
         super(delegate, noiseGeneratorSettingsHolder);
@@ -68,11 +65,10 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
             }
 
             //此处加一行判断即可，其他全是抄原版的
-            if ((structurePlacement instanceof PositionPlacement positionPlacement && positionPlacement.isTCRPlacementChunk(this, pos.x,pos.z)) || structurePlacement.isStructureChunk(pStructureState, pos.x, pos.z)) {
-                DuelOfTheEndMod.LOGGER.info("Ok"+pos+" "+sectionPos+structurePlacement);
+            if ((structurePlacement instanceof PositionPlacement positionPlacement && positionPlacement.isDOTEPlacementChunk(this, pos.x, pos.z)) || structurePlacement.isStructureChunk(pStructureState, pos.x, pos.z)) {
                 if (iterator.size() == 1) {
                     this.tryGenerateStructure(iterator.get(0), pStructureManager, pRegistryAccess, randomState, pStructureTemplateManager, pStructureState.getLevelSeed(), pChunk, pos, sectionPos);
-             } else {
+                } else {
                     ArrayList<StructureSet.StructureSelectionEntry> list = new ArrayList<>(iterator.size());
                     list.addAll(iterator);
                     WorldgenRandom worldgenRandom = new WorldgenRandom(new LegacyRandomSource(0L));
@@ -80,15 +76,15 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
                     int i = 0;
 
                     StructureSet.StructureSelectionEntry $$16;
-                    for(Iterator<StructureSet.StructureSelectionEntry> var15 = list.iterator(); var15.hasNext(); i += $$16.weight()) {
+                    for (Iterator<StructureSet.StructureSelectionEntry> var15 = list.iterator(); var15.hasNext(); i += $$16.weight()) {
                         $$16 = var15.next();
                     }
 
-                    while(!list.isEmpty()) {
+                    while (!list.isEmpty()) {
                         int $$17 = worldgenRandom.nextInt(i);
                         int $$18 = 0;
 
-                        for(Iterator<StructureSet.StructureSelectionEntry> var17 = list.iterator(); var17.hasNext(); ++$$18) {
+                        for (Iterator<StructureSet.StructureSelectionEntry> var17 = list.iterator(); var17.hasNext(); ++$$18) {
                             StructureSet.StructureSelectionEntry $$19 = var17.next();
                             $$17 -= $$19.weight();
                             if ($$17 < 0) {
@@ -127,13 +123,13 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
      * 检查不能和地标过近
      */
     private boolean tryGenerateOtherStructure(StructureSet.StructureSelectionEntry pStructureSelectionEntry, StructureManager pStructureManager, RegistryAccess pRegistryAccess, RandomState pRandom, StructureTemplateManager pStructureTemplateManager, long pSeed, ChunkAccess pChunk, ChunkPos pChunkPos, SectionPos pSectionPos) {
-        if(getBiomeSource() instanceof DOTEBiomeProvider provider){
-            for(DOTEStructurePoses structure : DOTEStructurePoses.values()){
-                Point p = structure.getPoint();
-                int chunkX = provider.deCorrectValue(p.x)>>2;
-                int chunkZ = provider.deCorrectValue(p.y)>>2;
+        if (getBiomeSource() instanceof DOTEBiomeProvider) {
+            for (DOTEStructurePoses structure : DOTEStructurePoses.values()) {
+                Vec3i p = structure.getPos();
+                int chunkX = p.getX() >> 4;
+                int chunkZ = p.getZ() >> 4;
 
-                if(Math.pow(chunkX - pChunkPos.x, 2) + Math.pow(chunkZ - pChunkPos.z, 2) < Math.pow(DOTEConfig.MIN_CHUNK_BETWEEN_STRUCTURE.get(), 2)){
+                if (Math.pow(chunkX - pChunkPos.x, 2) + Math.pow(chunkZ - pChunkPos.z, 2) < Math.pow(DOTEConfig.MIN_CHUNK_BETWEEN_STRUCTURE.get(), 2)) {
                     return false;
                 }
             }
@@ -166,20 +162,19 @@ public class DOTEChunkGenerator extends NoiseBasedChunkGeneratorWrapper {
             }
         }
         if (placementSetMap.isEmpty()) return nearest;
-        if(this.getBiomeSource() instanceof DOTEBiomeProvider provider){
+        if (this.getBiomeSource() instanceof DOTEBiomeProvider) {
             for (Map.Entry<PositionPlacement, Set<Holder<Structure>>> landmarkPlacement : placementSetMap.entrySet()) {
                 PositionPlacement placement = landmarkPlacement.getKey();
-                Point p = new Point(0,0);
+                Vec3i p = Vec3i.ZERO;
                 //在这里判断结构是什么，并且返回对应的点
-                for(DOTEStructurePoses structure : DOTEStructurePoses.values()){
-                    if(structure.ordinal() == placement.structure){
-                        p = structure.getPoint();
+                for (DOTEStructurePoses structure : DOTEStructurePoses.values()) {
+                    if (structure == DOTEStructurePoses.valueOf(placement.structure)) {
+                        p = structure.getPos();
                         break;
                     }
                 }
-                int chunkX = provider.deCorrectValue(p.x) >> 2;
-                int chunkZ = provider.deCorrectValue(p.y) >> 2;
-                BlockPos pos1 = new BlockPos(chunkX << 4, pos.getY(),chunkZ << 4);
+
+                BlockPos pos1 = new BlockPos(p.getX(), p.getY(), p.getZ());
                 for (Holder<Structure> targetStructure : targetStructures) {
                     if (landmarkPlacement.getValue().contains(targetStructure)) {
                         nearest = new Pair<>(pos1, targetStructure);
