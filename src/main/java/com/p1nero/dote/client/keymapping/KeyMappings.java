@@ -1,49 +1,48 @@
 package com.p1nero.dote.client.keymapping;
 
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.DOTEConfig;
-import org.lwjgl.glfw.GLFW;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import com.p1nero.dote.network.DOTEPacketHandler;
+import com.p1nero.dote.network.PacketRelay;
+import com.p1nero.dote.network.packet.serverbound.RequestExitSpectatorPacket;
+import com.p1nero.dote.worldgen.dimension.DOTEDimension;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 public class KeyMappings {
 
-	public static final MyKeyMapping OPEN_PROGRESS = new MyKeyMapping(buildKey("open_progress"), GLFW.GLFW_KEY_J, "key.categories.tcr");
+	public static final MyKeyMapping EXIT_SPECTATOR = new MyKeyMapping(buildKey("exit_spectator"), GLFW.GLFW_KEY_ENTER, "key.categories.dote");
 
 	public static String buildKey(String name){
-		return "key.tcr." + name;
+		return "key.dote." + name;
 	}
 
 	@SubscribeEvent
 	public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
+		event.register(EXIT_SPECTATOR);
 	}
 
 	@Mod.EventBusSubscriber(modid = DuelOfTheEndMod.MOD_ID, value = Dist.CLIENT)
 	public static class KeyPressHandler {
-		/**
-		 * 在群系里才能打开窗口看，主世界没法打开
-		 */
+
 		@SubscribeEvent
 		public static void onClientTick(TickEvent.ClientTickEvent event) {
-//			if(OPEN_PROGRESS.isDown() && !(Minecraft.getInstance().screen instanceof GameProgressScreen)){
-//				if(Minecraft.getInstance().level != null && Minecraft.getInstance().player != null){
-//					BlockPos pos = Minecraft.getInstance().player.getOnPos();
-//					if(Minecraft.getInstance().level.getBiome(pos).is(TCRBiomeTags.IS_TCR)){
-//						PacketRelay.sendToServer(TCRPacketHandler.INSTANCE, new RequestOpenProgressScreenPacket(new CompoundTag()));
-//					}
-//				}
-//			}
-//			if(OPEN_PROGRESS.isRelease()){
-//				DOTEConfig.RENDER_CUSTOM_GUI.set(!DOTEConfig.RENDER_CUSTOM_GUI.get());
-//			}
+			if(event.phase.equals(TickEvent.Phase.END)){
+				while (EXIT_SPECTATOR.consumeClick()){
+					if (Minecraft.getInstance().player != null && Minecraft.getInstance().screen == null && !Minecraft.getInstance().isPaused()) {
+						if(Minecraft.getInstance().player.isSpectator() && Minecraft.getInstance().player.level().dimension() == DOTEDimension.P_SKY_ISLAND_LEVEL_KEY) {
+							PacketRelay.sendToServer(DOTEPacketHandler.INSTANCE, new RequestExitSpectatorPacket());
+						}
+					}
+				}
+			}
 		}
+
 	}
-
-
 
 }

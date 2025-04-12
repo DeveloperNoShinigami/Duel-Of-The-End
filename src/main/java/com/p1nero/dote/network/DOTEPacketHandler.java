@@ -33,8 +33,9 @@ public class DOTEPacketHandler {
         register(AddEntityAfterImageParticle.class, AddEntityAfterImageParticle::decode);
 
         // 发给服务端
-        register(NpcPlayerInteractPacket.class, NpcPlayerInteractPacket::decode);
+        register(RequestExitSpectatorPacket.class, RequestExitSpectatorPacket::decode);
         register(AddDialogPacket.class, AddDialogPacket::decode);
+        register(NpcPlayerInteractPacket.class, NpcPlayerInteractPacket::decode);
 
         //双端
         register(SyncArchivePacket.class, SyncArchivePacket::decode);

@@ -1,12 +1,12 @@
 package com.p1nero.dote.client.gui.screen;
 
-import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.DOTEConfig;
+import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.client.gui.screen.component.DialogueAnswerComponent;
 import com.p1nero.dote.client.gui.screen.component.DialogueChoiceComponent;
 import com.p1nero.dote.entity.api.NpcDialogue;
-import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.DOTEPacketHandler;
+import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.packet.serverbound.AddDialogPacket;
 import com.p1nero.dote.network.packet.serverbound.NpcPlayerInteractPacket;
 import net.minecraft.ChatFormatting;

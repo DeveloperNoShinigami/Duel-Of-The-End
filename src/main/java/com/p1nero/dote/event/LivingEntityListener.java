@@ -1,6 +1,9 @@
 package com.p1nero.dote.event;
 
 import com.p1nero.dote.DuelOfTheEndMod;
+import com.p1nero.dote.worldgen.dimension.DOTEDimension;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.GameType;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -29,6 +32,22 @@ public class LivingEntityListener {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEntityDimChanged(EntityTravelToDimensionEvent event) {
 
+        //维度内且为观察者则禁止传送
+        if(event.getEntity().isSpectator() && event.getEntity().level().dimension() == DOTEDimension.P_SKY_ISLAND_LEVEL_KEY){
+            event.setCanceled(true);
+        }
+        //进维度换冒险
+        if(event.getDimension() == DOTEDimension.P_SKY_ISLAND_LEVEL_KEY){
+            if(event.getEntity() instanceof ServerPlayer serverPlayer){
+                serverPlayer.setGameMode(GameType.ADVENTURE);
+            }
+        }
+        //出维度还原为生存
+        if(event.getEntity().level().dimension() == DOTEDimension.P_SKY_ISLAND_LEVEL_KEY){
+            if(event.getEntity() instanceof ServerPlayer serverPlayer){
+                serverPlayer.setGameMode(GameType.SURVIVAL);
+            }
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
