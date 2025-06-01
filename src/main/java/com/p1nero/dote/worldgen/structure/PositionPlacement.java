@@ -2,8 +2,6 @@ package com.p1nero.dote.worldgen.structure;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.worldgen.biome.DOTEBiomeProvider;
 import com.p1nero.dote.worldgen.dimension.DOTEChunkGenerator;
 import net.minecraft.core.Vec3i;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
@@ -32,9 +30,9 @@ public class PositionPlacement extends StructurePlacement {
     }
 
     public boolean isDOTEPlacementChunk(DOTEChunkGenerator chunkGen, int chunkX, int chunkZ) {
-        if (chunkGen.getBiomeSource() instanceof DOTEBiomeProvider) {
-            return checkStructure(DOTEStructurePoses.valueOf(this.structure), chunkX << 4, chunkZ << 4);
-        }
+//        if (chunkGen.getBiomeSource() instanceof DOTEBiomeProvider) {
+//            return checkStructure(DOTEStructurePoses.valueOf(this.structure), chunkX << 4, chunkZ << 4);
+//        }
         return false;
     }
 
@@ -42,18 +40,18 @@ public class PositionPlacement extends StructurePlacement {
      * 判断该区块是否符合所指定的结构的位置
      */
     private boolean checkStructure(DOTEStructurePoses structure, int correctX, int correctZ) {
-        int deOffsetX = structure.getPos().getX() - structure.getOffsetX();
-        int deOffsetZ = structure.getPos().getZ() - structure.getOffsetZ();
-        int size = structure.getSize();
-        //存在误差，所以用一个范围好，而且大结构需要多个区块
-        if (DOTEStructurePoses.valueOf(this.structure) == structure
-                && correctX >= deOffsetX - size && correctZ >= deOffsetZ - size
-                && correctX <= deOffsetX + size && correctZ <= deOffsetZ + size
-                && !hasGenerated) {
-            hasGenerated = true;//防止多次生成
-            DuelOfTheEndMod.LOGGER.info("Loading structure [" + structure + "] at (" + deOffsetX + ", " + deOffsetZ + ")");
-            return true;
-        }
+//        int deOffsetX = structure.getPos().getX() - structure.getOffsetX();
+//        int deOffsetZ = structure.getPos().getZ() - structure.getOffsetZ();
+//        int size = structure.getSize();
+//        //存在误差，所以用一个范围好，而且大结构需要多个区块
+//        if (DOTEStructurePoses.valueOf(this.structure) == structure
+//                && correctX >= deOffsetX - size && correctZ >= deOffsetZ - size
+//                && correctX <= deOffsetX + size && correctZ <= deOffsetZ + size
+//                && !hasGenerated) {
+//            hasGenerated = true;//防止多次生成
+//            DuelOfTheEndMod.LOGGER.info("Loading structure [" + structure + "] at (" + deOffsetX + ", " + deOffsetZ + ")");
+//            return true;
+//        }
 
         return false;
     }
