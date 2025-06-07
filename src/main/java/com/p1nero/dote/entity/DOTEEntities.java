@@ -1,12 +1,13 @@
 package com.p1nero.dote.entity;
 
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlamePatch;
 import com.p1nero.dote.capability.epicfight.NPCPatch;
+import com.p1nero.dote.entity.custom.boss.SimpleBoss;
 import com.p1nero.dote.entity.custom.boss.dark_advance.DarkAdvance;
 import com.p1nero.dote.entity.custom.boss.goldenflame.BlackHoleEntity;
 import com.p1nero.dote.entity.custom.boss.goldenflame.FlameCircleEntity;
 import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlame;
+import com.p1nero.dote.entity.custom.boss.goldenflame.GoldenFlamePatch;
 import com.p1nero.dote.entity.custom.boss.liu_guang.LiuGuangEntity;
 import com.p1nero.dote.entity.custom.boss.ms_abyss.MsAbyssEntity;
 import com.p1nero.dote.entity.custom.boss.reaper.ReaperEntity;
@@ -47,7 +48,7 @@ public class DOTEEntities {
 	public static final RegistryObject<EntityType<DarkAdvance>> DARK_ADVANCE = register("dark_advance",
 			EntityType.Builder.of(DarkAdvance::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<SandCaptainEntity>> SAND_CAPTAIN = register("sand_captain",
-			EntityType.Builder.of(SandCaptainEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+			EntityType.Builder.of(SandCaptainEntity::new, MobCategory.MONSTER).sized(0.8F, 2.5F));
 	public static final RegistryObject<EntityType<SenbaiDevil>> SENBAI_DEVIL = register("senbai_devil",
 			EntityType.Builder.of(SenbaiDevil::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<SlaughterGeneralEntity>> SLAUGHTER_GENERAL = register("slaughter_general",
@@ -62,6 +63,26 @@ public class DOTEEntities {
 			EntityType.Builder.of(MsAbyssEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<LiuGuangEntity>> LIU_GUANG = register("liu_guang",
 			EntityType.Builder.of(LiuGuangEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> FALLEN_JUDGE = register("fallen_judge",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> SHAO_QIN = register("shao_qin",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> SAGE = register("sage",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> SINCER_WARRIOR = register("sincer_warrior",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THEBANCHENG = register("thebancheng",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THECOWCOWCOW7 = register("thecowcowcow7",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THEHOTSUMMER = register("thehotsummer",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THESIXGOOGLE = register("thesixgoogle",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THESUNWUKONG = register("thesunwukong",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
+	public static final RegistryObject<EntityType<SimpleBoss>> THEZHAOZILONG = register("thezhaozilong",
+			EntityType.Builder.of(SimpleBoss::new, MobCategory.MONSTER).sized(0.6f, 1.8f));
 
 
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> entityTypeBuilder) {
@@ -102,6 +123,17 @@ public class DOTEEntities {
 		event.put(GOLDEN_FLAME.get(), GoldenFlame.setAttributes());
 		event.put(MS_ABYSS.get(), MsAbyssEntity.setAttributes());
 		event.put(LIU_GUANG.get(), LiuGuangEntity.setAttributes());
+
+		event.put(FALLEN_JUDGE.get(), SimpleBoss.setAttributes());
+		event.put(SAGE.get(), SimpleBoss.setAttributes());
+		event.put(SHAO_QIN.get(), SimpleBoss.setAttributes());
+		event.put(SINCER_WARRIOR.get(), SimpleBoss.setAttributes());
+		event.put(THEBANCHENG.get(), SimpleBoss.setAttributes());
+		event.put(THECOWCOWCOW7.get(), SimpleBoss.setAttributes());
+		event.put(THEHOTSUMMER.get(), SimpleBoss.setAttributes());
+		event.put(THESIXGOOGLE.get(), SimpleBoss.setAttributes());
+		event.put(THESUNWUKONG.get(), SimpleBoss.setAttributes());
+		event.put(THEZHAOZILONG.get(), SimpleBoss.setAttributes());
 
 		//NPC
 		event.put(ABYSS_DWELLER.get(), AbyssDwellerEntity.setAttributes());

@@ -4,6 +4,7 @@ import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.block.DOTEBlockEntities;
 import com.p1nero.dote.block.renderer.BetterStructureBlockRenderer;
 import com.p1nero.dote.entity.DOTEEntities;
+import com.p1nero.dote.entity.custom.boss.client.SimpleBossRenderer;
 import com.p1nero.dote.entity.custom.boss.dark_advance.client.DarkAdvanceRenderer;
 import com.p1nero.dote.entity.custom.boss.goldenflame.client.BlackHoleRenderer;
 import com.p1nero.dote.entity.custom.boss.goldenflame.client.FlameCircleRenderer;
@@ -19,6 +20,7 @@ import com.p1nero.dote.entity.custom.npc.abyss_dweller.client.AbyssDwellerRender
 import com.p1nero.dote.item.model.GoldenDragonArmorModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -52,6 +54,17 @@ public class ClientModEvents{
 
         //NPC
         EntityRenderers.register(DOTEEntities.ABYSS_DWELLER.get(), AbyssDwellerRenderer::new);
+
+        EntityRenderers.register(DOTEEntities.FALLEN_JUDGE.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/fallen_judge.png")));
+        EntityRenderers.register(DOTEEntities.SAGE.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/sage.png")));
+        EntityRenderers.register(DOTEEntities.SHAO_QIN.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/shao_qin.png")));
+        EntityRenderers.register(DOTEEntities.SINCER_WARRIOR.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/sincer_warrior.png")));
+        EntityRenderers.register(DOTEEntities.THEBANCHENG.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thebancheng.png")));
+        EntityRenderers.register(DOTEEntities.THECOWCOWCOW7.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thecowcowcow7.png")));
+        EntityRenderers.register(DOTEEntities.THEHOTSUMMER.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thehotsummer.png")));
+        EntityRenderers.register(DOTEEntities.THESIXGOOGLE.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thesixgoogle.png")));
+        EntityRenderers.register(DOTEEntities.THESUNWUKONG.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thesunwukong.png")));
+        EntityRenderers.register(DOTEEntities.THEZHAOZILONG.get(), context -> new SimpleBossRenderer(context, new ResourceLocation(DuelOfTheEndMod.MOD_ID, "textures/entity/thezhaozilong.png")));
 
     }
 

@@ -3,7 +3,7 @@ package com.p1nero.dote.entity.custom.boss;
 import com.p1nero.dote.DOTEConfig;
 import com.p1nero.dote.block.entity.spawner.BossSpawnerBlockEntity;
 import com.p1nero.dote.client.BossMusicPlayer;
-import com.p1nero.dote.entity.ai.goal.AttemptToGoHomeGoal;
+import com.p1nero.dote.entity.ai.goal.AttemptToGoBackGoal;
 import com.p1nero.dote.entity.api.HomePointEntity;
 import com.p1nero.dote.entity.api.IWanderableEntity;
 import com.p1nero.dote.entity.custom.DOTEMonster;
@@ -232,7 +232,8 @@ public abstract class DOTEBoss extends DOTEMonster implements HomePointEntity, I
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(0, new AttemptToGoHomeGoal<>(this, 1.0));
+//        this.goalSelector.addGoal(0, new AttemptToGoHomeGoal<>(this, 1.0));
+        this.goalSelector.addGoal(0, new AttemptToGoBackGoal<>(this, 1.0));
     }
 
     protected void registerCommonGoals() {

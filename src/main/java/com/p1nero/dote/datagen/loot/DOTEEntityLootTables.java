@@ -37,6 +37,17 @@ public class DOTEEntityLootTables extends EntityLootSubProvider {
         add(DOTEEntities.LIU_GUANG.get(), emptyLootTable());
 
         add(DOTEEntities.ABYSS_DWELLER.get(), emptyLootTable());
+
+        add(DOTEEntities.FALLEN_JUDGE.get(), emptyLootTable());
+        add(DOTEEntities.SAGE.get(), emptyLootTable());
+        add(DOTEEntities.SHAO_QIN.get(), emptyLootTable());
+        add(DOTEEntities.SINCER_WARRIOR.get(), emptyLootTable());
+        add(DOTEEntities.THEBANCHENG.get(), emptyLootTable());
+        add(DOTEEntities.THECOWCOWCOW7.get(), emptyLootTable());
+        add(DOTEEntities.THEHOTSUMMER.get(), emptyLootTable());
+        add(DOTEEntities.THESIXGOOGLE.get(), emptyLootTable());
+        add(DOTEEntities.THESUNWUKONG.get(), emptyLootTable());
+        add(DOTEEntities.THEZHAOZILONG.get(), emptyLootTable());
     }
 
     public LootTable.Builder emptyLootTable() {
