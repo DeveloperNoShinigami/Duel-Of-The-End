@@ -239,9 +239,9 @@ public abstract class DOTEBoss extends DOTEMonster implements HomePointEntity, I
     protected void registerCommonGoals() {
         this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false));
-        this.goalSelector.addGoal(0, new RandomStrollGoal(this, 1));
-        this.goalSelector.addGoal(1, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
     }
 
     @Override
