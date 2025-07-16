@@ -23,6 +23,8 @@ public class DOTEItemTabs {
 						tabData.accept(DOTEBlocks.U_BLOCK.get());
 						tabData.accept(DOTEBlocks.SENBAI_SPAWNER.get());
 						tabData.accept(DOTEBlocks.GOLDEN_FLAME_SPAWNER.get());
+						tabData.accept(DOTEBlocks.SAND_CAPTAIN_SPAWNER.asStack(1));
+						tabData.accept(DOTEBlocks.MS_ABYSS_SPAWNER.asStack(1));
 					}).build());
 
 }

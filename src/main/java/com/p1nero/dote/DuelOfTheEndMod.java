@@ -4,10 +4,10 @@ import com.mojang.logging.LogUtils;
 import com.p1nero.dote.block.DOTEBlockEntities;
 import com.p1nero.dote.block.DOTEBlocks;
 import com.p1nero.dote.client.DOTESounds;
+import com.p1nero.dote.condition.DOTEConditions;
 import com.p1nero.dote.effect.DOTEEffects;
 import com.p1nero.dote.entity.DOTEEntities;
 import com.p1nero.dote.entity.DOTEVillagers;
-import com.p1nero.dote.condition.DOTEConditions;
 import com.p1nero.dote.gameasset.DOTELivingMotions;
 import com.p1nero.dote.item.DOTEItemTabs;
 import com.p1nero.dote.item.DOTEItems;
@@ -15,6 +15,7 @@ import com.p1nero.dote.network.DOTEPacketHandler;
 import com.p1nero.dote.worldgen.biome.DOTEBiomeProvider;
 import com.p1nero.dote.worldgen.dimension.DOTEChunkGenerator;
 import com.p1nero.dote.worldgen.structure.DOTEStructurePlacementTypes;
+import dev.xkmc.l2library.base.L2Registrate;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -43,6 +44,8 @@ public class DuelOfTheEndMod {
     public static final String REGISTRY_NAMESPACE = "dote";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final L2Registrate REGISTRATE = new L2Registrate(MOD_ID);
+
     public DuelOfTheEndMod(){
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -60,6 +63,8 @@ public class DuelOfTheEndMod {
         LivingMotion.ENUM_MANAGER.registerEnumCls(MOD_ID, DOTELivingMotions.class);
         DOTEConditions.CONDITIONS.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
+
+        DOTEBlocks.register();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DOTEConfig.SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, DOTEConfig.CLIENT_SPEC);

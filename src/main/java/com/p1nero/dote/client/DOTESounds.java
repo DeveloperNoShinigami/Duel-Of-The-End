@@ -13,7 +13,6 @@ public final class DOTESounds {
 	public static final RegistryObject<SoundEvent> DODGE = createEvent("skill.dote.dodge");
 	public static final RegistryObject<SoundEvent> SENBAI_BGM = createEvent("bgm.dote.senbai_fight");
 	public static final RegistryObject<SoundEvent> GOLDEN_FLAME_BGM = createEvent("bgm.dote.goldenflame_fight");
-	public static final RegistryObject<SoundEvent> BIOME_BGM = createEvent("bgm.dote.biome_bgm");
 	private static RegistryObject<SoundEvent> createEvent(String sound) {
 		return REGISTRY.register(sound, () -> SoundEvent.createVariableRangeEvent(DuelOfTheEndMod.prefix(sound)));
 	}

@@ -1,39 +1,52 @@
 package com.p1nero.dote.block.custom.spawner;
 
-import com.p1nero.dote.DOTEConfig;
-import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.block.entity.spawner.BossSpawnerBlockEntity;
 import com.p1nero.dote.client.DOTESounds;
-import com.p1nero.dote.entity.custom.DOTEMonster;
-import com.p1nero.dote.item.DOTEItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.*;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
-
 public abstract class BossSpawnerBlock extends BaseEntityBlock {
-    Supplier<BlockEntityType<? extends BossSpawnerBlockEntity<?>>> blockEntityType;
-    protected BossSpawnerBlock(Properties pProperties, Supplier<BlockEntityType<? extends BossSpawnerBlockEntity<?>>> blockEntityType) {
+    protected BossSpawnerBlock(Properties pProperties) {
         super(pProperties);
-        this.blockEntityType = blockEntityType;
+        this.registerDefaultState((this.stateDefinition.any()).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
+    }
+
+    @Override
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState blockState) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, context.getHorizontalDirection());
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(BlockStateProperties.HORIZONTAL_FACING);
     }
 
     @Override
@@ -49,33 +62,14 @@ public abstract class BossSpawnerBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         BlockEntity entity = pLevel.getBlockEntity(pPos);
-        if(entity instanceof BossSpawnerBlockEntity<?> bossSpawnerBlockEntity && !pLevel.isClientSide){
-            int r = DOTEConfig.SPAWNER_BLOCK_PROTECT_RADIUS.get() - 5;
-            //防止小怪打扰
-            if(!pLevel.getEntitiesOfClass(DOTEMonster.class, new AABB(pPos.offset(-r, -r, -r), pPos.offset(r, r, r))).isEmpty()){
-                pPlayer.displayClientMessage(DuelOfTheEndMod.getInfo("tip3"), true);
-                return InteractionResult.sidedSuccess(false);
-            }
-            //强制1v1
-            if(pLevel.getEntitiesOfClass(Player.class, new AABB(pPos.offset(-r, -r, -r), pPos.offset(r, r, r))).size() != 1){
-                pPlayer.displayClientMessage(DuelOfTheEndMod.getInfo("tip4"), true);
-                return InteractionResult.sidedSuccess(false);
-            }
-            if(bossSpawnerBlockEntity.getMyEntity() == null && pPlayer.getItemInHand(pHand).is(DOTEItems.IMMORTALESSENCE.get())){
+        if(entity instanceof BossSpawnerBlockEntity<?> bossSpawnerBlockEntity && pLevel instanceof ServerLevel serverLevel){
+            if(bossSpawnerBlockEntity.canSummon(pPos, pPlayer, pHand, pHit)){
                 pPlayer.getItemInHand(pHand).shrink(1);
-                if(pLevel instanceof ServerLevel serverLevel) {
-                    bossSpawnerBlockEntity.spawnMyBoss(serverLevel);
-                    bossSpawnerBlockEntity.setCurrentPlayer(pPlayer.getUUID());
-                    serverLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), DOTESounds.LOTUSHEAL.get(), SoundSource.BLOCKS, 1, 1);
-                    for (int i = 0; i < 10; i++) {
-                        double rx = pPos.getX() + pLevel.getRandom().nextFloat();
-                        double ry = pPos.getY() + pLevel.getRandom().nextFloat();
-                        double rz = pPos.getZ() + pLevel.getRandom().nextFloat();
-                        serverLevel.sendParticles(ParticleTypes.SOUL, rx, ry + 2.0F, rz, 1, 0.0D, 0.01D, 0.0D, 0.01);
-                    }
-                }
+                bossSpawnerBlockEntity.spawnMyBoss(serverLevel);
+                serverLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), DOTESounds.LOTUSHEAL.get(), SoundSource.BLOCKS, 1, 1);
+                bossSpawnerBlockEntity.summonParticles(serverLevel, pPlayer, pPos);
             } else {
-                pPlayer.displayClientMessage(DuelOfTheEndMod.getInfo("tip1").append(bossSpawnerBlockEntity.getEntityType().getDescription()), true);
+                bossSpawnerBlockEntity.onSummonFail(serverLevel, pPlayer, pPos);
             }
 
         }

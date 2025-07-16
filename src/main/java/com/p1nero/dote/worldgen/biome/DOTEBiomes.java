@@ -1,7 +1,6 @@
 package com.p1nero.dote.worldgen.biome;
 
 import com.p1nero.dote.DuelOfTheEndMod;
-import com.p1nero.dote.client.DOTESounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
@@ -89,7 +88,6 @@ public class DOTEBiomes {
                         .fogColor(0xffffff)
                         .skyColor(0xffffff)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
-                        .backgroundMusic(Musics.createGameMusic(DOTESounds.BIOME_BGM.getHolder().orElseThrow()))
                         .build())
                 .build();
     }

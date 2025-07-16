@@ -16,6 +16,5 @@ public class    DOTESoundGenerator extends DOTESoundProvider {
         generateNewSoundWithSubtitle(DOTESounds.DODGE, "dodge", 1);
         generateNewSoundWithSubtitle(DOTESounds.SENBAI_BGM, "senbaidevil", 1);
         generateNewSoundWithSubtitle(DOTESounds.GOLDEN_FLAME_BGM, "goldenflame", 1);
-        generateNewSoundWithSubtitle(DOTESounds.BIOME_BGM, "biome_bgm", 1);
     }
 }

@@ -36,7 +36,6 @@ public class DOTELangGenerator extends DOTELangProvider {
         this.addSubtitle(DOTESounds.DODGE, "闪避音效");
         this.addSubtitle(DOTESounds.SENBAI_BGM, "森白影魔战斗bgm");
         this.addSubtitle(DOTESounds.GOLDEN_FLAME_BGM, "金焰神王战斗bgm");
-        this.addSubtitle(DOTESounds.BIOME_BGM, "圣堂群系bgm");
 
         addBiome(DOTEBiomes.AIR, "虚空");
         

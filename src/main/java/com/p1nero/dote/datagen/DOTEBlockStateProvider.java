@@ -22,10 +22,6 @@ public class DOTEBlockStateProvider extends BlockStateProvider {
         simpleBlock(DOTEBlocks.M_BLOCK.get());
         simpleBlock(DOTEBlocks.P_BLOCK.get());
         simpleBlock(DOTEBlocks.U_BLOCK.get());
-        simpleBlockWithItem(DOTEBlocks.SENBAI_SPAWNER.get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/senbai_spawner")));
-        simpleBlockWithItem(DOTEBlocks.GOLDEN_FLAME_SPAWNER.get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/golden_flame_spawner")));
     }
 
     private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
