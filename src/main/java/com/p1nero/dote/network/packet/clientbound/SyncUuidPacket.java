@@ -1,6 +1,5 @@
 package com.p1nero.dote.network.packet.clientbound;
 
-import com.p1nero.dote.client.gui.BossBarHandler;
 import com.p1nero.dote.network.packet.BasePacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +23,6 @@ public record SyncUuidPacket(UUID serverUuid, int id) implements BasePacket {
 
     @Override
     public void execute(@Nullable Player player) {
-        BossBarHandler.BOSSES.put(serverUuid, id);
+        // removed boss bar synchronization
     }
 }

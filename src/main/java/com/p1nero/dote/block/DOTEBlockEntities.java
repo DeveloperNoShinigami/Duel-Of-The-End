@@ -2,7 +2,6 @@ package com.p1nero.dote.block;
 
 import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.block.entity.BetterStructureBlockEntity;
-import com.p1nero.dote.block.entity.spawner.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,14 +16,5 @@ public class DOTEBlockEntities {
                     BlockEntityType.Builder.of(BetterStructureBlockEntity::new,
                             DOTEBlocks.BETTER_STRUCTURE_BLOCK.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<SenbaiSpawnerBlockEntity>> SENBAI_SPAWNER_BLOCK_ENTITY =
-            REGISTRY.register("senbai_spawner_block_entity", () ->
-                    BlockEntityType.Builder.of(SenbaiSpawnerBlockEntity::new,
-                            DOTEBlocks.SENBAI_SPAWNER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<GoldenFlameSpawnerBlockEntity>> GOLDEN_FLAME_SPAWNER_BLOCK_ENTITY =
-            REGISTRY.register("golden_flame_spawner_block_entity", () ->
-                    BlockEntityType.Builder.of(GoldenFlameSpawnerBlockEntity::new,
-                            DOTEBlocks.GOLDEN_FLAME_SPAWNER.get()).build(null));
 
 }

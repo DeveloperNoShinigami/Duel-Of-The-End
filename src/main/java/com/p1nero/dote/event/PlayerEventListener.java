@@ -2,7 +2,6 @@ package com.p1nero.dote.event;
 
 import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.archive.DOTEArchiveManager;
-import com.p1nero.dote.entity.custom.boss.DOTEBoss;
 import com.p1nero.dote.network.DOTEPacketHandler;
 import com.p1nero.dote.network.PacketRelay;
 import com.p1nero.dote.network.packet.SyncArchivePacket;
@@ -32,8 +31,6 @@ public class PlayerEventListener {
         if(event.getEntity() instanceof ServerPlayer serverPlayer){
             //同步客户端数据
             PacketRelay.sendToPlayer(DOTEPacketHandler.INSTANCE, new SyncArchivePacket(DOTEArchiveManager.toNbt()), serverPlayer);
-            //防止重进后boss的uuid不同
-            DOTEBoss.SERVER_BOSSES.forEach(((uuid, integer) -> PacketRelay.sendToPlayer(DOTEPacketHandler.INSTANCE, new SyncUuidPacket(uuid, integer), serverPlayer)));
         } else {
             //单机世界的同步数据
             if(DOTEArchiveManager.isAlreadyInit()){

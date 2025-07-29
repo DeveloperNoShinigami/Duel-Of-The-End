@@ -29,10 +29,6 @@ public class DOTEItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(DOTEItems.IMMORTALESSENCE);
 
-        simpleItem(DOTEItems.GOLDEN_DRAGON_HELMET);
-        simpleItem(DOTEItems.GOLDEN_DRAGON_CHESTPLATE);
-        simpleItem(DOTEItems.GOLDEN_DRAGON_LEGGINGS);
-        simpleItem(DOTEItems.GOLDEN_DRAGON_BOOTS);
     }
 
     // Thank you kaupenjoe & El_Redstoniano!
