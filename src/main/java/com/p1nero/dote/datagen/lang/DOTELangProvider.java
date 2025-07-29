@@ -13,7 +13,6 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.text.WordUtils;
-import yesman.epicfight.skill.Skill;
 
 import java.util.function.Supplier;
 
@@ -39,13 +38,6 @@ public abstract class DOTELangProvider extends LanguageProvider {
         this.add("biome." + DuelOfTheEndMod.MOD_ID + "." + biome.location().getPath(), name);
     }
 
-    /**
-     * Skill 此时未注册不能run
-     */
-    public void addSkill(String skill, String name, String tooltip) {
-        this.add("skill." + DuelOfTheEndMod.MOD_ID + "." + skill, name);
-        this.add("skill." + DuelOfTheEndMod.MOD_ID + "." + skill + ".tooltip", tooltip);
-    }
 
     public void addSapling(String woodPrefix, String saplingName) {
         this.add("block." + DuelOfTheEndMod.MOD_ID + woodPrefix + "_sapling", saplingName);

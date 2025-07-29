@@ -10,8 +10,7 @@ public class DOTELootTableProvider {
     public static LootTableProvider create(PackOutput output) {
         return new LootTableProvider(output, DOTELoot.IMMUTABLE_LOOT_TABLES,List.of(
                 new LootTableProvider.SubProviderEntry(DOTEBlockLootTables::new, LootContextParamSets.BLOCK),
-                new LootTableProvider.SubProviderEntry(DOTEChestLootTables::new, LootContextParamSets.CHEST),
-                new LootTableProvider.SubProviderEntry(DOTEEntityLootTables::new, LootContextParamSets.ENTITY)
+                new LootTableProvider.SubProviderEntry(DOTEChestLootTables::new, LootContextParamSets.CHEST)
         ));
     }
 }
