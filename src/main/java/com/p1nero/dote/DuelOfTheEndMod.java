@@ -4,11 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.p1nero.dote.block.DOTEBlockEntities;
 import com.p1nero.dote.block.DOTEBlocks;
 import com.p1nero.dote.client.DOTESounds;
-import com.p1nero.dote.condition.DOTEConditions;
 import com.p1nero.dote.effect.DOTEEffects;
-import com.p1nero.dote.entity.DOTEEntities;
-import com.p1nero.dote.entity.DOTEVillagers;
-import com.p1nero.dote.gameasset.DOTELivingMotions;
 import com.p1nero.dote.item.DOTEItemTabs;
 import com.p1nero.dote.item.DOTEItems;
 import com.p1nero.dote.network.DOTEPacketHandler;
@@ -32,7 +28,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
-import yesman.epicfight.api.animation.LivingMotion;
 
 import java.io.File;
 import java.util.Locale;
@@ -53,15 +48,11 @@ public class DuelOfTheEndMod {
         DOTEItems.REGISTRY.register(bus);
         DOTEBlocks.REGISTRY.register(bus);
         DOTEBlockEntities.REGISTRY.register(bus);
-        DOTEEntities.REGISTRY.register(bus);
         DOTEItemTabs.REGISTRY.register(bus);
         DOTEEffects.REGISTRY.register(bus);
         DOTEStructurePlacementTypes.STRUCTURE_PLACEMENT_TYPES.register(bus);
-        DOTEVillagers.register(bus);
         bus.addListener(this::commonSetup);
         bus.addListener(this::registerExtraStuff);
-        LivingMotion.ENUM_MANAGER.registerEnumCls(MOD_ID, DOTELivingMotions.class);
-        DOTEConditions.CONDITIONS.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
 
         DOTEBlocks.register();

@@ -2,6 +2,7 @@ package com.p1nero.dote.item;
 
 import com.p1nero.dote.DuelOfTheEndMod;
 import com.p1nero.dote.block.DOTEBlocks;
+import com.p1nero.dote.item.DOTEItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,10 +22,6 @@ public class DOTEItemTabs {
 						tabData.accept(DOTEBlocks.M_BLOCK.get());
 						tabData.accept(DOTEBlocks.P_BLOCK.get());
 						tabData.accept(DOTEBlocks.U_BLOCK.get());
-						tabData.accept(DOTEBlocks.SENBAI_SPAWNER.get());
-						tabData.accept(DOTEBlocks.GOLDEN_FLAME_SPAWNER.get());
-						tabData.accept(DOTEBlocks.SAND_CAPTAIN_SPAWNER.asStack(1));
-						tabData.accept(DOTEBlocks.MS_ABYSS_SPAWNER.asStack(1));
 					}).build());
 
 }

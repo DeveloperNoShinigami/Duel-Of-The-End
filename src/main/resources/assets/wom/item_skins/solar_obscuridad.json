@@ -6,6 +6,6 @@
     "lifetime": 6,
     "interpolations": 12,
     "texture_path": "duel_of_the_end:textures/particle/yz2.png",
-    "particle_type": "epicfight:swing_trail"
+    "particle_type": ""
   }
 }
